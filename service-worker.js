@@ -1,4 +1,4 @@
-const staticCacheName = 'currency-static-v9';
+const staticCacheName = 'currency-static-v1';
 // anex nkkmlmlmlmmml
 const filesToCache = [
 	'/ss/',
@@ -45,8 +45,7 @@ self.addEventListener('fetch', (event) => {
 				return response;
 			}
 			// console.log('fetch -->',event.request.url)
-			if(event.request.url.startsWith('https://statvalidation.'))
-				return fetch(event.request,{mode: 'no-cors'})
+
 			return fetch(event.request)
 
 		})
