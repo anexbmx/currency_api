@@ -38,16 +38,8 @@ self.addEventListener('activate', (event) => {
 })
 self.addEventListener('fetch', (event) => {
 	event.respondWith(
-		caches.match(event.request)
-		.then((response) => {
-			if (response) {
-				// console.log('Cache --> ',event.request.url);
-				return response;
-			}
-			// console.log('fetch -->',event.request.url)
-
-			return fetch(event.request)
-
+		caches.match(event.request).then((response) => {
+			return response || fetch(event.request);
 		})
 	)
 })
