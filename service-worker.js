@@ -1,4 +1,4 @@
-const staticCacheName = 'currency-static-v4';
+const staticCacheName = 'currency-static-v5';
 // anex nkkmlmlmlmmml
 const filesToCache = [
 	'/ss/',
