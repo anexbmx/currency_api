@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Currency</title>
+	<link rel="stylesheet" href="css/app.css">
+
+</head>
+<body>
+	<div class="notification">
+		<div class="notify">
+			<span class="emoji">😓</span>
+			<p>Sorry you cannot use this currency offline</p>
+			<span class="update">Update</span>
+			<span class="dismiss">Close</span>
+		</div>
+	</div>
+	<div id="content-page">
+		<header>
+			<h1 class="text-center">Currency Converter</h1>
+		</header>
+
+		<!-- Convert currency -->
+		<section class="box-convert">
+
+			<h4 class="text-center">All currencies you use online will be offline later</h4>
+			<form class="text-center">
+				<div class="box-from">
+					<span class="title">From</span>
+					<select id="list-curr-from" class="list-curr">
+
+					</select>
+					<span class="curr-name">Bangladeshi Taka</span>
+					<div class="group-input">
+						<span class="icon-input">$</span>
+						<input type="number" placeholder="Amount" class="curr-value text-center">
+					</div>
+				</div>
+				<button class="reverse rev-1">⇸</button>
+				<button class="reverse rev-2">⤈</button>
+				<div class="box-to">
+					<span class="title">To</span>
+					<select id="list-curr-to" class="list-curr">
+
+					</select>
+					<span class="curr-name">Bangladeshi Taka</span>
+					<div class="group-input">
+						<span class="icon-input result  dis">€</span>
+						<input readonly type="text" placeholder="#####" class="curr-result text-center  dis">
+					</div>
+				</div>
+			</form>
+			<p class="text-center AmountWrap">
+				<span>1</span>
+				<span class="title-from">USD</span> ⟹
+				<span class="curr-one-to">0.03256323</span>
+				<span class="title-to">EUR</span>
+			</p>
+			<button class="btn-convert disabled" disabled>✓ Convert</button>
+			<button id="myBtn" class="btn-list ">List Currencies Offline</button>
+		</section>
+		<!-- Section chart & details info -->
+		<section class="chart-info">
+			<article class="chart" style="max-height: 450px">
+				<h4 class="text-center"><span class="title-from">USD</span> to <span class="title-to">EUR</span> Chart</h4>
+				<p class="text-center">
+					<span class="date-start">27-06-2017</span> 🡒
+					<span class="date-end">26 Jun 2018</span>
+					<span class="title-from">USD</span>/
+					<span class="title-to">EUR</span>
+					close : <strong class="current-value">?.?????</strong>
+					</p>
+				<canvas id="myChart" ></canvas>
+			</article>
+			<article class="details">
+				<h4 class="text-center">1 (<span class="title-from">?</span> / <span class="title-to">?</span>) Last 9 Days</h4>
+				<table>
+					<thead>
+						<tr>
+							<td></td>
+							<td class="text-center col-from"><span class="title-from">?</span> 🡒 <span class="title-to">?</span></td>
+							<td class="text-center col-to"><span class="title-to">?</span> 🡒 <span class="title-from">?</span></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="title">High</td>
+							<td class="text-center max-from">0.00</td>
+							<td class="text-center max-to">0.00</td>
+						</tr>
+						<tr>
+							<td class="title">Low</td>
+							<td class="text-center min-from">0.00</td>
+							<td class="text-center min-to">0.00</td>
+						</tr>
+						<tr>
+							<td class="title">Avergage</td>
+							<td class="text-center avg-from">0.00</td>
+							<td class="text-center avg-to">0.00</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+		</section>
+
+		<!-- Footer -->
+		<footer>
+			<p class="text-center">Made with 🎧 In Tiflet ©2018 By Anas Boumediene(Anex bm)</p>
+		</footer>
+
+		<!-- Modal  -->
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<div class="list-offline">
+					<p>Currencies that you can use while you are offline</p>
+					<ul>
+
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<script src="dist/jquery-3.3.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+	<script src="ES6/Chart.bundle.min.js"></script>
+	<script src="dist/main.js"></script>
+</body>
+</html>
