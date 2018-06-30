@@ -3,6 +3,7 @@ import {Currency} from './Currency';
 import {ControllerElement} from './ControllerElement';
 import {Notification} from './Notification';
 import {ServiceWorker} from './ServiceWorker';
+import {DOM} from './DOM';
 
 
 
@@ -20,27 +21,26 @@ convert.allCurrencies();
 $(function(){
 	$('section').slideDown(500)
 
-	$('#list-curr-from').on('change', () => {
+	DOM.getById('list-curr-from').addEventListener('change', () => {
 		const currency = ControllerElement.currentCurrencyFrom();
-		$('.box-from .curr-name').text(currency.name)
-		$('.box-from .icon-input').text(currency.symbol)
-		$('.title-from').text(currency.id);
-		$('.curr-one-to').text('?.????')
+		DOM.setContent('.box-from .curr-name', currency.name);
+		DOM.setContent('.box-from .icon-input', currency.symbol);
+		DOM.setContentAll('.title-from', currency.id);
+		DOM.setContent('.curr-one-to', '?.????');
 	})
 
-	$('#list-curr-to').on('change', () => {
+	DOM.getById('list-curr-to').addEventListener('change', () => {
 		const currency = ControllerElement.currentCurrencyTo();
-		$('.box-to .curr-name').text(currency.name)
-		$('.box-to .icon-input').text(currency.symbol)
-		$('.title-to').text(currency.id);
-		$('.curr-one-to').text('?.????')
+		DOM.setContent('.box-to .curr-name', currency.name);
+		DOM.setContent('.box-to .icon-input', currency.symbol);
+		DOM.setContentAll('.title-to', currency.id);
+		DOM.setContent('.curr-one-to', '?.????');
 	})
 
-	$('.reverse').on('click', () => {
-		return false;
-	})
+	DOM.query('.reverse').addEventListener('click', (event) => {
+		 event.preventDefault();	})
 
-	$('.btn-convert').on('click', () => {
+	DOM.query('.btn-convert').addEventListener('click', () => {
 		const currency_from = ControllerElement.currentCurrencyFrom();
 		const currency_to = ControllerElement.currentCurrencyTo();
 
@@ -50,23 +50,8 @@ $(function(){
 
 	})
 
-	$('.dismiss').on('click', () => {
+	DOM.query('.dismiss').addEventListener('click', () => {
 		$('.notification').slideUp(500);
 	})
-
-	$('.curr-value').on('keyup', (event) => {
-		const btnConvert = $('.btn-convert')
-		if ($(event.target).val().length == 0) {
-			btnConvert.addClass('disabled')
-			btnConvert.attr('disabled',true)
-		}
-		else {
-			btnConvert.removeClass('disabled');
-			btnConvert.attr('disabled',false)
-		}
-	})
-
-	// Get the modal
-
 
 })

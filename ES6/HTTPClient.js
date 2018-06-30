@@ -1,5 +1,6 @@
 import {ControllerElement} from './ControllerElement';
 import {IndexDb} from './IndexDb';
+import {DOM} from './DOM';
 
 function objectToArray(object){
 		let values = [];
@@ -17,15 +18,17 @@ export class HTTPClient {
 		this.idb = new IndexDb();
 		this.convert = convert;
 
-		const modal = document.getElementById('myModal');
-		$('#myBtn').on('click', () => {
+		const modal = DOM.getById('myModal');
+		DOM.getById('myBtn').addEventListener('click', () => {
 		    modal.style.display = "block";
 		    this.idb.getAllConverter().then(dt => {
+		    	if (dt.length > 0)
+		    		DOM.query('.modal strong').style.display = 'none';
 		    	this.controllerElement.fillOfflineCurr(dt);
 		    })
 		})
 
-		$(".close").on('click', () => {
+		DOM.query(".close").addEventListener('click', () => {
 		    modal.style.display = "none";
 		});
 

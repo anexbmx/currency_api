@@ -40,7 +40,7 @@ header h1 {
 
 .box-convert h4 {
 	color: #673ab7;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 .box-convert form .box-from,
@@ -255,7 +255,7 @@ header h1 {
 	}
 
 	.box-convert h4 {
-		display: none;
+		/*display: none;*/
 	}
 }
 .chart-info .details table {
@@ -334,7 +334,6 @@ section {
 	background: #000;
 	padding: 4px;
 	box-shadow: 0 0 15px rgba(8, 8, 8, 0.2);
-	border-radius: 5px;
 }
 
 .notify {
@@ -418,6 +417,12 @@ section {
    box-shadow: 0 0 16px rgba(8,8,8,.2);
 }
 
+.modal strong {
+	padding: 5px;
+    text-transform: capitalize;
+    text-align: center;
+    display: block;
+}
 /* The Close Button */
 .close {
     color: #aaaaaa;

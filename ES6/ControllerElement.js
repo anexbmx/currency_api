@@ -1,29 +1,29 @@
 import {Currency} from './Currency';
 import {HandlerHistoData} from './HandlerHistoData';
 import {Notification} from './Notification';
-
+import {DOM} from './DOM';
 
 export class ControllerElement {
 	constructor() {
 	}
 
 	static currentCurrencyFrom() {
-		const inputSelectCurrFrom = $( "#list-curr-from option:selected" );
-		return new Currency(inputSelectCurrFrom.attr('value'),
-			inputSelectCurrFrom.attr('data-name'),
-			inputSelectCurrFrom.attr('data-symbol'));
+		const currentOption = DOM.currentOption("list-curr-from");
+		return new Currency(currentOption.attributes['value'].value,
+			currentOption.attributes['data-name'].value,
+			currentOption.attributes['data-symbol'].value);
 	}
 
 	static currentCurrencyTo() {
-		const inputSelectCurrTo = $( "#list-curr-to option:selected" );
-		return new Currency(inputSelectCurrTo.attr('value'),
-			inputSelectCurrTo.attr('data-name'),
-			inputSelectCurrTo.attr('data-symbol'));
+		const currentOption = DOM.currentOption("list-curr-to");
+		return new Currency(currentOption.attributes['value'].value,
+			currentOption.attributes['data-name'].value,
+			currentOption.attributes['data-symbol'].value);
 	}
 
 	currentSelectedCurrency(input) {
-		let currencySymbol = input.attr('data-symbol');
-		let currencyName = input.attr('data-name');
+		let currencySymbol = input.attributes['data-symbol'].value;
+		let currencyName = input.attributes['data-symbol'].value;
 		console.log(currencySymbol,currencyName);
 	}
 
@@ -37,41 +37,43 @@ export class ControllerElement {
 			selectInput.append(`<option data-symbol="${currency.symbol}" data-name="${currency.name}" value="${currency.id}">${currency.id}</option>`)
 		}
 
-		$('#list-curr-from option:nth-of-type(9)').attr('selected','true');
-		$('#list-curr-to option:nth-of-type(3)').attr('selected','true');
+		DOM.getById('list-curr-from').selectedIndex = 8;
+		DOM.getById('list-curr-to').selectedIndex = 2;
 
 		const currencyFrom = ControllerElement.currentCurrencyFrom();
-		$('.box-from .curr-name').text(currencyFrom.name)
-		$('.box-from .icon-input').text(currencyFrom.symbol)
+		DOM.setContent('.box-from .curr-name', currencyFrom.name);
+		DOM.setContent('.box-from .icon-input', currencyFrom.symbol);
 
 		const currencyTo = ControllerElement.currentCurrencyTo();
-	    $('.box-to .curr-name').text(currencyTo.name)
-	    $('.box-to .icon-input').text(currencyTo.symbol)
+	    DOM.setContent('.box-to .curr-name', currencyTo.name)
+	    DOM.setContent('.box-to .icon-input', currencyTo.symbol);
 
-		$('.title-from').text(currencyFrom.id);
-		$('.title-to').text(currencyTo.id);
+		DOM.setContentAll('.title-from', currencyFrom.id);
+		DOM.setContentAll('.title-to', currencyTo.id);
 	}
 
 	setResultToInputText(response) {
-		const inputTextResult = $('.curr-result');
-		const from = $('#list-curr-from').val();
-		const to = $('#list-curr-to').val();
+		const inputTextResult = DOM.query('.curr-result');
+		const from = DOM.getById('list-curr-from').value;
+		const to = DOM.getById('list-curr-to').value;
+		console.log('from'+from,'to'+to);
 		if(response == -1) {
-			inputTextResult.val('');
+			inputTextResult.value = '';
 			const notify = new Notification(Notification.emoji_sad(), `Sorry you cannot use this currency '${from} 🡒 ${to}' offline`);
 			notify.showWithTime();
 
 			return;
 		}
 
-		const inputTextValue = $('.curr-value');
+		const inputTextValue = DOM.query('.curr-value');
 
-		$('.current-value, .curr-one-to').text(response);
-		inputTextResult.val((response * inputTextValue.val()).toFixed(3));
+		DOM.setContent('.current-value', response);
+		DOM.setContent('.curr-one-to', response);
+		inputTextResult.value = (response * inputTextValue.value).toFixed(3);
 	}
 
 	static setChart(histoData) {
-		var ctx = document.getElementById("myChart").getContext('2d');
+		var ctx = DOM.getById("myChart").getContext('2d');
 		var myChart = new Chart(ctx, {
 			type: 'bar',
 			data: {
