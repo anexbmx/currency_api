@@ -10,4 +10,4 @@ The application should be able convert one currency to another while offline or 
 - Free Currency Converter API
 
 # Guthub Page
-link to App [currency Converter](www.google.com)
+link to App [currency Converter](https://anexbmx.github.io/ss/)
