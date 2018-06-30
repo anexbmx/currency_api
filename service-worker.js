@@ -1,8 +1,8 @@
 const staticCacheName = 'currency-static-v1';
 // anex nkkmlmlmlmmml
 const filesToCache = [
-	'/rr/',
-	'/rr/index.html',
+	'/currency_api/',
+	'/currency_api/index.html',
 	'img/curr.ico',
 	'dist/main.js',
 	'css/app.css',
